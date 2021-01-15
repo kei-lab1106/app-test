@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{name}}</title>
+    </head>
+
+    <a href="/logout">ログアウトする</a>
+
+    <body bgcolor="#10100E" text="#cccccc">
+
+    <h1>Instagramもどき</h1>
+    <!-- 以下を追加 -->
+
+    <!--form action="/index" method="POST">
+        <input type="text" name="name" placeholder="Enter name">
+        <input type="submit" value="Submit">
+    </form-->
+
+    <!--img src="{{ img_url }}"-->
+
+    <!-- 追加終わり -->
+    <!--img src="/static/images/torii.jpg" alt="鳥居"-->
+
+    <form action="/add" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend>投稿</legend>
+            <div>
+                <input type="file" id="img_file" name="img_file" class="col-sm-4">
+                <input type="text" name="title" placeholder="タイトル">
+                <input type="text" name="body" placeholder="感想">
+                <input type="submit" value="Add">
+            </div>
+        </fieldset>
+    </form>
+
+
+    <form action="/update" method="post" id="update" enctype="multipart/form-data">
+        <fieldset>
+            <legend>編集</legend>
+            <div>
+                <input type="file" id="img_file" name="img_file" class="col-sm-4">
+                <input type="text" name="title" placeholder="タイトル">
+                <input type="text" name="body" placeholder="感想">
+                <input type="submit" value="Update">
+            </div>
+        </fieldset>
+    </form>
+
+    <form action="/delete" method="post" id="delete">
+        <fieldset>
+            <legend>削除</legend>
+            <div>
+                <input type="submit" value="Delete Selected All Onegai">
+            </div>
+        </fieldset>
+    </form>
+        {% for onegai in all_onegai %}
+        <div>
+            <input type="radio" name="update" form="update" value={{onegai.id}}>
+            <input type="checkbox" name="delete" form="delete" value={{onegai.id}}>
+            <p><img src="{{ onegai.picture }}"></p>
+            {{onegai.title}}：{{onegai.body}}（{{onegai.date}}）
+            <!--写真用の表示-->
+        </div>
+        {% endfor %}
+
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <h1>ログイン画面</h1>
+    {% if status == "user_notfound" %}
+    <p>ユーザが見つかりません。新規登録しましょう。</p>
+    {% elif status == "wrong_password" %}
+    <p>パスワードが間違っています。</p>
+    {% elif status == "logout" %}
+    <p>ログアウトが完了しました。</p>
+    {% endif %}
+    <form action="/login" method="post">
+        <fieldset>
+            <legend>ユーザー情報</legend>
+            <div>
+                <input type="text" name="user_name" placeholder="user name">
+                <input type="password" name="password" placeholder="password">
+                <input type="submit" value="Login">
+            </div>
+        </fieldset>
+    </form>
+    <a href="/newcomer">新規登録</a>
+</body>
+</html>
